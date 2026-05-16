@@ -75,28 +75,14 @@ ok "Output folder ready: $MERCH_DIR"
 echo ""
 
 # ── Install Claude Code context ───────────────────────────────────────────────
-echo "[5/5] Setting up Claude Code project context..."
+echo "[5/5] Verifying Claude Code project context..."
 
-# Detect Claude Code projects directory (Mac: ~/.claude/projects)
-CLAUDE_DIR="$HOME/.claude/projects"
-
-if [ ! -d "$CLAUDE_DIR" ]; then
-    warn "Claude Code not detected. Install from https://claude.ai/code and re-run."
+# CLAUDE.md lives in the project root — Claude Code reads it automatically
+# when this folder is opened. Nothing is written to ~/.claude/.
+if [ -f "CLAUDE.md" ]; then
+    ok "CLAUDE.md is present. Claude Code will load it automatically when you open this folder."
 else
-    # Build the encoded project path the same way Claude Code does
-    # Claude encodes the absolute path: replaces / with - and removes leading -
-    CURRENT_DIR="$(pwd)"
-    ENCODED=$(echo "$CURRENT_DIR" | sed 's|/|-|g' | sed 's|^-||')
-    PROJECT_CONTEXT_DIR="$CLAUDE_DIR/$ENCODED"
-
-    mkdir -p "$PROJECT_CONTEXT_DIR"
-
-    if [ -f "CLAUDE.md" ]; then
-        cp "CLAUDE.md" "$PROJECT_CONTEXT_DIR/CLAUDE.md"
-        ok "Claude Code context installed at: $PROJECT_CONTEXT_DIR"
-    else
-        warn "CLAUDE.md not found — skipping Claude Code context."
-    fi
+    warn "CLAUDE.md not found. Claude won't have project context."
 fi
 
 # ── Done ──────────────────────────────────────────────────────────────────────

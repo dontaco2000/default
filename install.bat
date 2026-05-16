@@ -73,34 +73,16 @@ if not exist "%USERPROFILE%\Merch\Concepts" (
 )
 echo.
 
-:: ── Install Claude Code context ───────────────────────────────────────────────
-echo [5/5] Setting up Claude Code project context...
+:: ── Verify Claude Code context ────────────────────────────────────────────────
+echo [5/5] Verifying Claude Code project context...
 
-:: Find the Claude projects directory
-set CLAUDE_DIR=%USERPROFILE%\.claude\projects
-if not exist "%CLAUDE_DIR%" (
-    echo  Claude Code not detected — skipping project context setup.
-    echo  Install Claude Code from https://claude.ai/code and re-run this installer.
-    goto :DONE
-)
-
-:: Find the encoded project path (Claude uses URL-encoded directory names)
-:: Look for a project directory matching this folder
-set CURRENT_DIR=%CD%
-set ENCODED_DIR=%CURRENT_DIR:\=-%
-set ENCODED_DIR=%ENCODED_DIR::=%
-set PROJECT_CONTEXT_DIR=%CLAUDE_DIR%\%ENCODED_DIR%
-
-if not exist "%PROJECT_CONTEXT_DIR%" (
-    mkdir "%PROJECT_CONTEXT_DIR%" 2>nul
-)
-
-:: Copy CLAUDE.md into the project memory folder
+:: CLAUDE.md lives in the project root — Claude Code reads it automatically
+:: when this folder is opened. No files are written to ~/.claude/.
 if exist "CLAUDE.md" (
-    copy "CLAUDE.md" "%PROJECT_CONTEXT_DIR%\CLAUDE.md" >nul
-    echo  Claude Code context installed.
+    echo  CLAUDE.md is present. Claude Code will load it automatically
+    echo  when you open this folder — no further setup needed.
 ) else (
-    echo  CLAUDE.md not found — skipping.
+    echo  WARNING: CLAUDE.md not found. Claude won't have project context.
 )
 
 :DONE
