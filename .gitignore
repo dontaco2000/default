@@ -1,0 +1,17 @@
+# Environment — never commit API keys
+.env
+
+# Local mockup review images
+mockup_check/
+mockup_review/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db

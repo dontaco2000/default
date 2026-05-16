@@ -1,0 +1,83 @@
+[
+  {
+    "id": "6a082bbdb7acc2cf22066066",
+    "title": "Offensive Dad \u2014 Unisex Tee",
+    "base_price": 12.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082bbdb7acc2cf22066066/11896/92570/offensive-dad-unisex-tee.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082bbdb7acc2cf22066066/11896/92571/offensive-dad-unisex-tee.jpg?camera_label=back"
+    ]
+  },
+  {
+    "id": "6a082bc7b7acc2cf2206606a",
+    "title": "Offensive Dad \u2014 Pullover Hoodie",
+    "base_price": 42.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082bc7b7acc2cf2206606a/32888/98424/offensive-dad-pullover-hoodie.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082bc7b7acc2cf2206606a/32888/98425/offensive-dad-pullover-hoodie.jpg?camera_label=back"
+    ]
+  },
+  {
+    "id": "6a082bcf4e9b4ee36b047d57",
+    "title": "Offensive Dad \u2014 Unisex Tee (Americana)",
+    "base_price": 12.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082bcf4e9b4ee36b047d57/11848/92570/offensive-dad-unisex-tee-americana.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082bcf4e9b4ee36b047d57/11848/92571/offensive-dad-unisex-tee-americana.jpg?camera_label=back"
+    ]
+  },
+  {
+    "id": "6a082bd80852663cf00a3b82",
+    "title": "Offensive Dad \u2014 Pullover Hoodie (Americana)",
+    "base_price": 39.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082bd80852663cf00a3b82/32912/98424/offensive-dad-pullover-hoodie-americana.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082bd80852663cf00a3b82/32912/98425/offensive-dad-pullover-hoodie-americana.jpg?camera_label=back"
+    ]
+  },
+  {
+    "id": "6a082be10852663cf00a3b88",
+    "title": "Offensive Dad \u2014 Classic Dad Hat",
+    "base_price": 25.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082be10852663cf00a3b88/105372/102307/offensive-dad-classic-dad-hat.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082be10852663cf00a3b88/105372/102724/offensive-dad-classic-dad-hat.jpg?camera_label=back"
+    ]
+  },
+  {
+    "id": "6a082be8041a0e2a120f5e38",
+    "title": "Offensive Dad \u2014 Kiss-Cut Stickers",
+    "base_price": 1.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082be8041a0e2a120f5e38/45747/16654/offensive-dad-kiss-cut-stickers.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082be8041a0e2a120f5e38/45747/2179/offensive-dad-kiss-cut-stickers.jpg?camera_label=context-1"
+    ]
+  },
+  {
+    "id": "6a082bef315e8641c50603cc",
+    "title": "Offensive Dad \u2014 Square Stickers",
+    "base_price": 1.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082bef315e8641c50603cc/45740/2187/offensive-dad-square-stickers.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082bef315e8641c50603cc/45740/2195/offensive-dad-square-stickers.jpg?camera_label=context"
+    ]
+  },
+  {
+    "id": "6a082bf9b7acc2cf2206607c",
+    "title": "Offensive Dad \u2014 Mug 11oz",
+    "base_price": 7.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082bf9b7acc2cf2206607c/33719/6400/offensive-dad-mug-11oz.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082bf9b7acc2cf2206607c/33719/6402/offensive-dad-mug-11oz.jpg?camera_label=left"
+    ]
+  },
+  {
+    "id": "6a082c00eeb1cc67a707094c",
+    "title": "Offensive Dad \u2014 Tote Bag",
+    "base_price": 25.99,
+    "mockups": [
+      "https://images-api.printify.com/mockup/6a082c00eeb1cc67a707094c/70603/11318/offensive-dad-tote-bag.jpg?camera_label=front",
+      "https://images-api.printify.com/mockup/6a082c00eeb1cc67a707094c/70603/11320/offensive-dad-tote-bag.jpg?camera_label=back"
+    ]
+  }
+]
