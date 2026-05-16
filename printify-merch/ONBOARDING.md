@@ -9,7 +9,7 @@ AI-generated designs → Printify products → live storefront. Full automation 
 - **Platform:** Printify API v1 (`https://api.printify.com/v1`)
 - **Image AI:** OpenAI `gpt-image-1` (transparent PNG, 2000×2000)
 - **Language:** Python 3 + `requests`, `openai`, `Pillow`, `python-dotenv`
-- **Store:** offensivedad.com (Shopify connected to Printify)
+- **Store:** Shopify connected to Printify
 
 ## Setup
 
@@ -33,7 +33,7 @@ OPENAI_API_KEY=...
 python generate_concepts.py "YOUR BRAND TAGLINE"
 ```
 - Generates 4 style variations (retro badge, bold modern, comedy club, americana) via gpt-image-1
-- Saves transparent PNGs to `D:\Streaming research\Merch\Concepts\`
+- Saves transparent PNGs to `~/Merch/Concepts/`
 - Opens the folder automatically — review and pick your favorites
 
 ### Step 2 — Finalize chosen designs
@@ -43,26 +43,26 @@ python finalize_concepts.py
 ```
 - Regenerates the chosen design in white (for dark-shirt products)
 - Upscales both designs to 2000×2000 PNG using PIL LANCZOS
-- Saves finals to `D:\Streaming research\Merch\<Brand Name>\`
+- Saves finals to `~/Merch/Finals/`
 
 ### Step 3 — Launch all products
-Copy `launch_offensive_dad.py`, then update these three things at the top:
+Copy `launch_brand.py`, rename it for your brand, then update the three config sections at the top:
 ```python
 BRAND = "Your Brand Name"
 DESIGNS = {
-    "bold_white": Path(r"D:\...\your_design_white_2000.png"),
-    "americana":  Path(r"D:\...\your_design_americana_2000.png"),
+    "white_design": Path(r"~/Merch/Finals/design_white_2000.png"),
+    "color_design": Path(r"~/Merch/Finals/design_color_2000.png"),
 }
 PRODUCTS = [
     # (blueprint_id, suffix, position, design_key, color_filter)
-    (6,   "Unisex Tee",      "front", "bold_white", "dark"),
-    (77,  "Pullover Hoodie", "front", "bold_white", "dark"),
+    (6,   "Unisex Tee",      "front", "white_design", "dark"),
+    (77,  "Pullover Hoodie", "front", "white_design", "dark"),
     ...
 ]
 ```
 Then run:
 ```
-python launch_your_brand.py
+python launch_yourbrand.py
 ```
 - Uploads designs to Printify
 - Creates all products with $1 placeholder price
@@ -165,6 +165,6 @@ LIGHT_KEYWORDS = {"white","natural","ash","light","sand","ivory","cream",
 |---|---|
 | `generate_concepts.py` | 4 design variations via gpt-image-1 |
 | `finalize_concepts.py` | Upscale chosen designs to 2000×2000 |
-| `launch_offensive_dad.py` | Full brand launch template |
+| `launch_brand.py` | Full brand launch template |
 | `reprice.py` | Reprice all live products at 25% margin |
 | `update_descriptions.py` | Push SEO descriptions to all products |
