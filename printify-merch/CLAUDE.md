@@ -7,6 +7,14 @@ AI design → Printify product launch pipeline. Read this before doing anything.
 - Env vars: `PRINTIFY_API_KEY`, `PRINTIFY_SHOP_ID`, `OPENAI_API_KEY` — loaded from `.env`
 - Image model: `gpt-image-1`, `background="transparent"`, `quality="medium"` (concepts) / `"high"` (finals), returns `b64_json`
 
+## Cloud Session / Tunnel Setup
+This project may run in a cloud environment where Printify blocks datacenter IPs.
+Before making any Printify API call, Claude must:
+1. Run `git pull origin HEAD` to get the latest `tunnel.url` if it exists
+2. If `tunnel.url` exists and is non-empty, read it and set `PRINTIFY_BASE_URL` in `.env`
+3. If `tunnel.url` does not exist, tell the user: "Run `start_tunnel.sh` (Mac/Linux) or `start_tunnel.ps1` (Windows) in the printify-merch folder, then come back."
+Scripts read `PRINTIFY_BASE_URL` from `.env` and fall back to the real Printify URL automatically.
+
 ## Active Scripts
 
 | Script | Purpose |
