@@ -4,7 +4,7 @@ Turn a design idea into live products on your Printify storefront in minutes. Us
 
 Built for use with **Claude Code** — Claude understands the full workflow and can run every step for you conversationally.
 
-**[⬇ Download Latest Release](https://github.com/dontaco2000/default/releases/download/v1.1.0/printify-merch.zip)** · **[All Releases](https://github.com/dontaco2000/default/releases)**
+**[⬇ Download Latest Release](https://github.com/dontaco2000/default/releases/download/v1.2.0/printify-merch.zip)** · **[All Releases](https://github.com/dontaco2000/default/releases)**
 
 ---
 
