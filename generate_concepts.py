@@ -1,8 +1,11 @@
 """
-Design concept generator — Step 1 of the Offensive Dad merch workflow.
-Generates 4 style variations via DALL-E 3, saves locally for review.
+Design concept generator — Step 1 of the merch workflow.
+Generates 4 style variations via gpt-image-1, saves locally for review.
+
+Usage:
+    python generate_concepts.py "YOUR BRAND TAGLINE"
 """
-import os, sys, requests
+import os, sys, base64
 from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -11,10 +14,10 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # ── CONFIG ─────────────────────────────────────────────────────────────────────
-IDEA      = sys.argv[1] if len(sys.argv) > 1 else "OFFENSIVE DAD"
-OUT_DIR   = Path(r"D:\Streaming research\Merch\Concepts")
+IDEA    = sys.argv[1] if len(sys.argv) > 1 else "OFFENSIVE DAD"
+OUT_DIR = Path.home() / "Merch" / "Concepts"   # ~/Merch/Concepts on Mac/Linux
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-SLUG      = IDEA.lower().replace(" ", "_")[:30]
+SLUG    = IDEA.lower().replace(" ", "_")[:30]
 
 CONCEPTS = [
     {
