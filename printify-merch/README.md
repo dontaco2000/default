@@ -90,12 +90,12 @@ python generate_concepts.py "YOUR BRAND TAGLINE"
 
 **Example:**
 ```bash
-python generate_concepts.py "OFFENSIVE DAD — TRUST ME, THE KID HAS HEARD THIS BEFORE"
+python generate_concepts.py "COOL BRAND — YOUR TAGLINE HERE"
 ```
 
 What happens:
 - AI generates **4 style variations**: Retro Badge, Bold Modern, Comedy Club, Vintage Americana
-- Saves transparent PNGs to `D:\Streaming research\Merch\Concepts\` (Windows) or `~/Merch/Concepts/` (Mac)
+- Saves transparent PNGs to `~/Merch/Concepts/` (Mac/Linux) or `%USERPROFILE%\Merch\Concepts\` (Windows)
 - Opens the folder automatically so you can review
 
 > **Tip:** The Bold Modern style works best on dark apparel (renders in white). The Americana style works best on light apparel and accessories.
@@ -121,15 +121,15 @@ python finalize_concepts.py
 
 What happens:
 - Upscales your design to 2000×2000 pixels using high-quality LANCZOS resampling
-- Saves the print-ready PNG to `D:\Streaming research\Merch\<Brand Name>\`
+- Saves the print-ready PNG to `~/Merch/Finals/`
 
 ---
 
 ### Step 3 — Launch Your Product Line
 
-Copy `launch_offensive_dad.py` and rename it for your brand:
+Copy `launch_brand.py` and rename it for your brand:
 ```bash
-cp launch_offensive_dad.py launch_yourbrand.py
+cp launch_brand.py launch_yourbrand.py
 ```
 
 Open the file and update the three config sections at the top:
@@ -140,20 +140,20 @@ BRAND = "Your Brand Name"
 
 # 2. Paths to your finalized design files
 DESIGNS = {
-    "bold_white": Path(r"D:\Streaming research\Merch\YourBrand\design_white_2000.png"),
-    "americana":  Path(r"D:\Streaming research\Merch\YourBrand\design_color_2000.png"),
+    "white_design": Path(r"~/Merch/Finals/design_white_2000.png"),
+    "color_design": Path(r"~/Merch/Finals/design_color_2000.png"),
 }
 
 # 3. Which products to create
 # Format: (blueprint_id, "Product Suffix", "position", "design_key", "color_filter")
 PRODUCTS = [
-    (6,   "Unisex Tee",       "front", "bold_white", "dark"),   # dark-color tees
-    (77,  "Pullover Hoodie",  "front", "bold_white", "dark"),   # dark-color hoodies
-    (6,   "Unisex Tee (Color)", "front", "americana", "light"), # light-color tees
-    (68,  "Mug 11oz",         "front", "americana",  "any"),    # mugs
-    (1447,"Classic Dad Hat",  "front", "americana",  "any"),    # hats
-    (400, "Kiss-Cut Stickers","front", "americana",  "any"),    # stickers
-    (553, "Tote Bag",         "front", "americana",  "any"),    # tote bags
+    (6,   "Unisex Tee",         "front", "white_design", "dark"),
+    (77,  "Pullover Hoodie",    "front", "white_design", "dark"),
+    (6,   "Unisex Tee (Color)", "front", "color_design", "light"),
+    (68,  "Mug 11oz",           "front", "color_design", "any"),
+    (1447,"Classic Dad Hat",    "front", "color_design", "any"),
+    (400, "Kiss-Cut Stickers",  "front", "color_design", "any"),
+    (553, "Tote Bag",           "front", "color_design", "any"),
 ]
 ```
 
@@ -299,19 +299,18 @@ Just describe what you want:
 
 ```
 printify-merch/
-├── .env                      # Your API keys (never committed)
-├── .env.example              # Key names — copy to .env and fill in
-├── CLAUDE.md                 # Claude Code project context (auto-loaded)
-├── ONBOARDING.md             # Shareable workflow summary
-├── README.md                 # This file
-├── requirements.txt          # pip dependencies
-├── generate_concepts.py      # Step 1: AI design generation
-├── finalize_concepts.py      # Step 2: upscale to print-ready PNG
-├── launch_offensive_dad.py   # Step 3: full product launch (use as template)
-├── reprice.py                # Pricing audit and correction
-├── update_descriptions.py    # SEO description updater
-├── offensive_dad_mockups.json  # Product IDs from Offensive Dad launch
-└── yerassaf_mockups.json       # Product IDs from Yerassaf launch
+├── .env                    # Your API keys (never committed)
+├── .env.example            # Key names — copy to .env and fill in
+├── CLAUDE.md               # Claude Code project context (auto-loaded)
+├── ONBOARDING.md           # Shareable workflow summary
+├── README.md               # This file
+├── requirements.txt        # pip dependencies
+├── generate_concepts.py    # Step 1: AI design generation
+├── finalize_concepts.py    # Step 2: upscale to print-ready PNG
+├── launch_brand.py         # Step 3: full product launch template
+├── reprice.py              # Pricing audit and correction
+├── update_descriptions.py  # SEO description updater
+└── mockups.json            # Generated after launch — your product IDs
 ```
 
 ---

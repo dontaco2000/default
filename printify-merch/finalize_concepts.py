@@ -1,60 +1,77 @@
 """
-Step 2: Regenerate Bold Modern in white, upscale both chosen designs to 2000x2000.
+Design Finalizer — Step 2 of the merch workflow
+─────────────────────────────────────────────────
+After reviewing the concepts from generate_concepts.py, update the
+CONFIG section below with your chosen files, then run:
+
+    python finalize_concepts.py
+
+What it does:
+  - Optionally regenerates a concept in white (for dark-shirt products)
+  - Upscales chosen designs to 2000x2000 px (print-ready)
+  - Saves finals to your output folder
 """
+
 import os, base64
 from pathlib import Path
 from PIL import Image
-from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
 
-client  = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-OUT_DIR = Path(r"D:\Streaming research\Merch\Concepts")
-FINAL   = Path(r"D:\Streaming research\Merch\Offensive Dad")
-FINAL.mkdir(parents=True, exist_ok=True)
+# ── CONFIG: update these before running ───────────────────────────────────────
 
-# ── Step 1: Regenerate Bold Modern in white for dark shirts ────────────────────
-print("Regenerating Bold Modern in white (for dark shirts)...")
-prompt = (
-    "T-shirt graphic design on a fully transparent background. "
-    "Clean, bold, modern typographic poster style. ALL design elements are pure white only. "
-    "The text OFFENSIVE DAD in massive all-caps condensed block letters, stacked tight, pure white. "
-    "Below it a thin white horizontal rule line, then smaller white text: "
-    "TRUST ME, THE KID HAS HEARD THIS BEFORE. "
-    "Every element is white. No black, no gray, no color. Transparent background. "
-    "Print-ready design for printing on dark colored shirts."
-)
-resp = client.images.generate(
-    model="gpt-image-1",
-    prompt=prompt,
-    size="1024x1024",
-    quality="high",
-    n=1,
-    background="transparent",
-)
-img_data = base64.b64decode(resp.data[0].b64_json)
-white_raw = OUT_DIR / "offensive_dad_bold_modern_white.png"
-white_raw.write_bytes(img_data)
-print(f"  Saved -> {white_raw.name}")
+CONCEPTS_DIR = Path.home() / "Merch" / "Concepts"   # where generate_concepts.py saved files
+FINALS_DIR   = Path.home() / "Merch" / "Finals"     # where to save the 2000x2000 outputs
+FINALS_DIR.mkdir(parents=True, exist_ok=True)
 
-# ── Step 2: Upscale both to 2000x2000 ─────────────────────────────────────────
-def upscale(src: Path, dst: Path, size=(2000, 2000)):
+# Files to upscale — update filenames to match your chosen concepts
+# Format: "output_name.png": CONCEPTS_DIR / "source_name.png"
+TO_UPSCALE = {
+    "design_color_2000.png": CONCEPTS_DIR / "your_brand_americana.png",
+    "design_white_2000.png": CONCEPTS_DIR / "your_brand_bold_modern.png",
+}
+
+# Optional: regenerate a concept in white for dark-shirt printing.
+# Set REGENERATE_WHITE to None to skip, or provide a prompt string.
+REGENERATE_WHITE = None
+# Example prompt:
+# REGENERATE_WHITE = (
+#     "T-shirt graphic design on a fully transparent background. "
+#     "ALL elements pure white only. YOUR DESIGN DESCRIPTION HERE. "
+#     "No black, no gray, no color. Print-ready for dark colored shirts."
+# )
+REGENERATE_OUTPUT = CONCEPTS_DIR / "design_white_raw.png"
+
+# ── Regenerate in white (optional) ────────────────────────────────────────────
+if REGENERATE_WHITE:
+    from openai import OpenAI
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    print("Regenerating design in white...")
+    resp = client.images.generate(
+        model="gpt-image-1",
+        prompt=REGENERATE_WHITE,
+        size="1024x1024",
+        quality="high",
+        n=1,
+        background="transparent",
+    )
+    img_data = base64.b64decode(resp.data[0].b64_json)
+    REGENERATE_OUTPUT.write_bytes(img_data)
+    print(f"  Saved -> {REGENERATE_OUTPUT.name}")
+
+# ── Upscale to 2000x2000 ──────────────────────────────────────────────────────
+def upscale(src, dst, size=(2000, 2000)):
     img = Image.open(src).convert("RGBA")
     img = img.resize(size, Image.LANCZOS)
     img.save(dst, "PNG")
-    print(f"  Upscaled {src.name} -> {dst.name}")
+    print(f"  {src.name} -> {dst.name}")
 
-print("\nUpscaling to 2000x2000...")
-upscale(
-    OUT_DIR / "offensive_dad_americana.png",
-    FINAL   / "offensive_dad_americana_2000.png"
-)
-upscale(
-    OUT_DIR / "offensive_dad_bold_modern_white.png",
-    FINAL   / "offensive_dad_bold_white_2000.png"
-)
+print("Upscaling to 2000x2000...")
+for output_name, source_path in TO_UPSCALE.items():
+    if not source_path.exists():
+        print(f"  [SKIP] Not found: {source_path}")
+        continue
+    upscale(source_path, FINALS_DIR / output_name)
 
-print(f"\nBoth final files ready in: {FINAL}")
-print("  1. offensive_dad_americana_2000.png      (light shirts)")
-print("  2. offensive_dad_bold_white_2000.png     (dark shirts)")
-os.startfile(str(FINAL))
+print(f"\nFinals saved to: {FINALS_DIR}")
+print("Update the DESIGNS paths in your launch script to point here.")

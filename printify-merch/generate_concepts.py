@@ -14,7 +14,7 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # ── CONFIG ─────────────────────────────────────────────────────────────────────
-IDEA    = sys.argv[1] if len(sys.argv) > 1 else "OFFENSIVE DAD"
+IDEA    = sys.argv[1] if len(sys.argv) > 1 else "YOUR BRAND"
 OUT_DIR = Path.home() / "Merch" / "Concepts"   # ~/Merch/Concepts on Mac/Linux
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 SLUG    = IDEA.lower().replace(" ", "_")[:30]
