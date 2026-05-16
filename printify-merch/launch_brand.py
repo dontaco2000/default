@@ -21,7 +21,7 @@ load_dotenv()
 
 KEY  = os.getenv("PRINTIFY_API_KEY")
 SHOP = os.getenv("PRINTIFY_SHOP_ID")
-BASE = "https://api.printify.com/v1"
+BASE = os.getenv("PRINTIFY_BASE_URL", "https://api.printify.com/v1")
 H    = {"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
 
 # ── CONFIG: update these three sections ───────────────────────────────────────
