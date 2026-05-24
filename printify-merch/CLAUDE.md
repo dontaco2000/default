@@ -12,7 +12,7 @@ AI design → Printify product launch pipeline. Read this before doing anything.
 | Script | Purpose |
 |---|---|
 | `generate_concepts.py` | Step 1 — generate 4 AI design variations |
-| `finalize_concepts.py` | Step 2 — upscale chosen design to 2000×2000 |
+| `finalize_concepts.py` | Step 2 — upscale chosen design to 3000×3000 at 300 DPI |
 | `launch_brand.py` | Step 3 — full brand launch template (copy + configure per brand) |
 | `reprice.py` | Reprice all live products at 25% per-variant margin |
 | `update_descriptions.py` | Push SEO descriptions to all mapped products |

@@ -110,7 +110,7 @@ Once you've picked your favorite(s), open `finalize_concepts.py` and update the 
 # Edit these to match your chosen concept filenames
 upscale(
     OUT_DIR / "your_brand_chosen_concept.png",   # your picked concept
-    FINAL   / "your_brand_design_2000.png"        # output filename
+    FINAL   / "your_brand_design_3000.png"        # output filename
 )
 ```
 
@@ -120,7 +120,7 @@ python finalize_concepts.py
 ```
 
 What happens:
-- Upscales your design to 2000×2000 pixels using high-quality LANCZOS resampling
+- Upscales your design to 3000×3000 pixels at 300 DPI using high-quality LANCZOS resampling
 - Saves the print-ready PNG to `~/Merch/Finals/`
 
 ---

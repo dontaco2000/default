@@ -8,7 +8,7 @@ CONFIG section below with your chosen files, then run:
 
 What it does:
   - Optionally regenerates a concept in white (for dark-shirt products)
-  - Upscales chosen designs to 2000x2000 px (print-ready)
+  - Upscales chosen designs to 3000x3000 px (print-ready)
   - Saves finals to your output folder
 """
 
@@ -21,14 +21,14 @@ load_dotenv()
 # ── CONFIG: update these before running ───────────────────────────────────────
 
 CONCEPTS_DIR = Path.home() / "Merch" / "Concepts"   # where generate_concepts.py saved files
-FINALS_DIR   = Path.home() / "Merch" / "Finals"     # where to save the 2000x2000 outputs
+FINALS_DIR   = Path.home() / "Merch" / "Finals"     # where to save the 3000x3000 outputs
 FINALS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Files to upscale — update filenames to match your chosen concepts
 # Format: "output_name.png": CONCEPTS_DIR / "source_name.png"
 TO_UPSCALE = {
-    "design_color_2000.png": CONCEPTS_DIR / "your_brand_americana.png",
-    "design_white_2000.png": CONCEPTS_DIR / "your_brand_bold_modern.png",
+    "design_color_3000.png": CONCEPTS_DIR / "your_brand_americana.png",
+    "design_white_3000.png": CONCEPTS_DIR / "your_brand_bold_modern.png",
 }
 
 # Optional: regenerate a concept in white for dark-shirt printing.
@@ -59,14 +59,14 @@ if REGENERATE_WHITE:
     REGENERATE_OUTPUT.write_bytes(img_data)
     print(f"  Saved -> {REGENERATE_OUTPUT.name}")
 
-# ── Upscale to 2000x2000 ──────────────────────────────────────────────────────
-def upscale(src, dst, size=(2000, 2000)):
+# ── Upscale to 3000x3000 ──────────────────────────────────────────────────────
+def upscale(src, dst, size=(3000, 3000)):
     img = Image.open(src).convert("RGBA")
     img = img.resize(size, Image.LANCZOS)
-    img.save(dst, "PNG")
+    img.save(dst, "PNG", dpi=(300, 300))
     print(f"  {src.name} -> {dst.name}")
 
-print("Upscaling to 2000x2000...")
+print("Upscaling to 3000x3000...")
 for output_name, source_path in TO_UPSCALE.items():
     if not source_path.exists():
         print(f"  [SKIP] Not found: {source_path}")
